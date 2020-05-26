@@ -1,0 +1,29 @@
+version: '3'
+services:
+  mysql-master:
+    build:
+      context: ./
+      dockerfile: master/Dockerfile
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123456"
+    ports:
+      - "33060:3306"
+    volumes:
+      - "/data/mysql/master/data:/var/lib/mysql"
+    restart: always
+    hostname: mysql-master
+  mysql-slave:
+    build:
+      context: ./
+      dockerfile: slave/Dockerfile
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123456"
+    links:
+      - mysql-master
+    ports:
+      - "33061:3306"
+    volumes:
+      - "/data/mysql/slave/data:/var/lib/mysql"
+    restart: always
+    hostname: mysql-slave
+
