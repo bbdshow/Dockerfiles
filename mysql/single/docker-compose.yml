@@ -7,6 +7,6 @@ services:
     ports:
       - "33060:3306"
     volumes:
-      - "/data/mysql/master/data:/var/lib/mysql"
+      - "/data/mysql/data:/var/lib/mysql"
     restart: always
     hostname: mysql-single
