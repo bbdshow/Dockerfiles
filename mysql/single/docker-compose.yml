@@ -1,0 +1,12 @@
+version: '3'
+services:
+  mysql-single:
+    image: mysql:5.7.30
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123456"
+    ports:
+      - "33060:3306"
+    volumes:
+      - "/data/mysql/master/data:/var/lib/mysql"
+    restart: always
+    hostname: mysql-single
